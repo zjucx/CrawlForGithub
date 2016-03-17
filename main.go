@@ -17,9 +17,13 @@ func main() {
   if err != nil {
     fmt.Println("ioutil error is: ", err)
   }
-  reg := regexp.MustCompile(`fill="(.*)"`)
+  defer res.Body.Close()
+  //reg := regexp.MustCompile(`fill="(.*)"`)
+  reg := regexp.MustCompile("fill\\=\"[\\S\\s]+?\"")
+  //reg := regexp.MustCompile("\\<[\\S\\s]+?\\>")
   //reg := regexp.MustCompile(`<rect (.*)`)
-  str := reg.FindString(string(body))
+  str := reg.FindAllString(string(body), -1)
+  str = reg.ReplaceAllString(str, -1)
   //str := reg.FindAllString(string(body), -1)
   fmt.Println(str)
 }
