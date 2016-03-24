@@ -12,7 +12,7 @@ import(
 
 type GithubInfo struct {
   Count string `json:"count"`
-  Date string `json:"date"`
+  Date  string `json:"date"`
   Color string `json:"color"`
 }
 
